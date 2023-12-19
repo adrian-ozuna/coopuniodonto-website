@@ -1,0 +1,302 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Afiliate">
+  <main>
+    <!-- Contact Us -->
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div class="max-w-xl mx-auto">
+        <div class="text-center">
+          <h1
+            class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white"
+          >
+            Afiliate
+          </h1>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">
+            Rellena tus los campos e inica tu proceso de afiliacion.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 max-w-lg mx-auto">
+        <!-- Card -->
+        <div
+          class="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700"
+        >
+          <form>
+            <div class="grid gap-4 lg:gap-6">
+              <!-- Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                <div>
+                  <label
+                    for="nombre"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Nombre</label
+                  >
+                  <input
+                    type="text"
+                    name="nombre"
+                    id="nombre"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="apellido"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Apellido</label
+                  >
+                  <input
+                    type="text"
+                    name="apellido"
+                    id="apellido"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+              </div>
+              <!-- End Grid -->
+
+              <div>
+                <label
+                  for="cedula"
+                  class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                  >Cedula</label
+                >
+                <input
+                  type="text"
+                  name="cedula"
+                  pattern="[0-9]{3}-[0-9]{7}-[0-9]{1}"
+                  id="cedula"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                  required
+                  />
+              </div>
+
+              <!-- Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                <div>
+                  <label
+                    for="correo"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autocomplete="email"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="telefono"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Telefono</label
+                  >
+                  <input
+                    type="tel"
+                    name="telefono"
+                    id="telefono"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="direccion"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Direccion</label
+                  >
+                  <input
+                    type="text"
+                    name="direccion"
+                    id="direccion"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="ciudad"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Ciudad</label
+                  >
+                  <select
+                    class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    name="ciudad"
+                    id="ciudad"
+                    required
+                  >
+                    <option value="Santo Domingo" selected>Santo Domingo</option
+                    >
+                    <option value="Santiago">Santiago</option>
+                    <option value="Azua">Azua</option>
+                    <option value="Santiago Rod.">Santiago Rod.</option>
+                    <option value="Bahoruco">Bahoruco</option>
+                    <option value="Duarte">Duarte</option>
+                    <option value="El Seibo">El Seibo</option>
+                    <option value="Espaillat">Espaillat</option>
+                    <option value="Hato Mayor">Hato Mayor</option>
+                    <option value="Hnas. Mirabal">Hnas. Mirabal</option>
+                    <option value="Independencia">Independencia</option>
+                    <option value="La Altagracia">La Altagracia</option>
+                    <option value="La Romana">La Romana</option>
+                    <option value="La Vega">La Vega</option>
+                    <option value="Maria Trinidad Sanchez"
+                      >Maria Trinidad Sanchez</option
+                    >
+                    <option value="M. Nouel">M. Nouel</option>
+                    <option value="Monte Plata">Monte Plata</option>
+                    <option value="Pedernales">Pedernales</option>
+                    <option value="Peravia">Peravia</option>
+                    <option value="Samana">Samana</option>
+                    <option value="San Cristobal">San Cristobal</option>
+                    <option value="San Jose de Ocoa">San Jose de Ocoa</option>
+                    <option value="San Juan">San Juan</option>
+                    <option value="San Pedro de Macoris"
+                      >San Pedro de Macoris</option
+                    >
+                    <option value="Sanchez Ramirez">Sanchez Ramirez</option>
+                    <option value="Monte Cristi">Monte Cristi</option>
+                    <option value="Puerto Plata">Puerto Plata</option>
+                    <option value="Valverde">Valverde</option>
+                    <option value="Dajabon">Dajabon</option>
+                    <option value="Elias Pina">Elia Piña</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="fechaNacimiento"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Fecha de nacimiento</label
+                  >
+                  <input
+                    type="date"
+                    name="fechaNacimiento"
+                    id="fechaNacimiento"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="estadoCivil"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Estado civil</label
+                  >
+                  <select
+                    class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    name="estadoCivil"
+                    id="estadoCivil"
+                    required
+                  >
+                    <option value="Soltero/a" selected>Santo Domingo</option>
+                    <option value="Casado/a">Santo Domingo</option>
+                    <option value="Viudo/a">Santo Domingo</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="sexo"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Sexo</label
+                  >
+                  <select
+                    class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    name="sexo"
+                    id="sexo"
+                    required
+                  >
+                    <option value="Masculino" selected>Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="telefonoTrabajo"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Telefono de trabajo</label
+                  >
+                  <input
+                    type="tel"
+                    name="telefonoTrabajo"
+                    id="telefonoTrabajo"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="lugarTrabajo"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Lugar de trabajo</label
+                  >
+                  <input
+                    type="text"
+                    name="lugarTrabajo"
+                    id="lugarTrabajo"
+                    class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    required
+                    />
+                </div>
+
+                <div>
+                  <label
+                    for="tipoNomina"
+                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                    >Tipo de nomina</label
+                  >
+                  <select
+                    class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    name="tipoNomina"
+                    id="tipoNomina"
+                    required
+                  >
+                    <option value="Empleado SNS" selected>Empleado SNS</option>
+                    <option value="Empleado PSS">Empleado PSS</option>
+                    <option value="Empleado SP">Empleado SP</option>
+                    <option value="Empleado Privado">Empleado privado</option>
+                  </select>
+                </div>
+              </div>
+              <!-- End Grid -->
+            </div>
+            <!-- End Grid -->
+
+            <div class="mt-6 grid">
+              <button
+                type="submit"
+                class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                >Enviar</button
+              >
+            </div>
+
+            <div class="mt-3 text-center">
+              <p class="text-sm text-gray-500">
+                Esta informacion sera utilizada unicamente para el proceso de
+                afiliacion y por lo tanto prometemos no divulgar de ninguna
+                manera la misma.
+              </p>
+            </div>
+          </form>
+        </div>
+        <!-- End Card -->
+      </div>
+    </div>
+    <!-- End Contact Us -->
+  </main>
+</Layout>

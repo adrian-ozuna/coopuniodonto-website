@@ -2,17 +2,19 @@
 export default {
   content: [
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
-    "node_modules/preline/dist/*.js",
+    "./node_modules/preline/preline.js",
   ],
+  darkMode: "class",
   theme: {
     fontFamily: {
       sans: ["Poppins", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#0F6808",
+      },
+    },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require("preline/plugin"),
-  ],
+  plugins: [require("preline/plugin"), require("@tailwindcss/forms")],
 };
 
