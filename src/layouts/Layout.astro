@@ -2,10 +2,6 @@
 import Navbar from '../components/navbar/Navbar.astro';
 import Footer from '../components/footer/Footer.astro';
 
-interface Props {
-  title: string;
-}
-
 const { title } = Astro.props;
 ---
 
@@ -33,7 +29,7 @@ const { title } = Astro.props;
       rel="stylesheet"
     />
   </head>
-  <body class="bg-neutral-50">
+  <body class="bg-neutral">
     <Navbar />
     <slot />
     <Footer />
