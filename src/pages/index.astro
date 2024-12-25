@@ -197,7 +197,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
       <!-- End Hero -->
     </section>
 
-    <section id="benefits" class="bg-green-50 py-24">
+    <section id="benefits" class="bg-green-100 py-16 md:py-24">
       <!-- Benefits -->
       <!-- Icon Blocks -->
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
@@ -255,10 +255,10 @@ const ctaData: ctaType = await sanityClient.fetch(`
     </section>
 
     <!-- History -->
-    <section id="history" class="py-24">
+    <section id="history" class="py-16 md:py-24">
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-start">
         <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
+          class="text-center md:text-start font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
         >
           {aboutUsSectionData?.title || "Sobre Nosotros"}
         </h2>
@@ -290,7 +290,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
       <!-- End History -->
     </section>
 
-    <section id="stats" class="py-24 bg-green-50">
+    <section id="stats" class="py-16 md:py-24 bg-green-100">
       <!-- Features -->
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
         <h2
@@ -325,8 +325,8 @@ const ctaData: ctaType = await sanityClient.fetch(`
     <!-- CTA -->
     {
       ctaData && (
-        <section id="cta" class="py-24">
-          <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pb-8">
+        <section id="cta" class="py-16 md:py-24">
+          <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 shadow-lg">
               <div class="content text-center md:text-start flex flex-col justify-between bg-green-600 gap-8 p-8 rounded-lg md:rounded-none lg:rounded-l-lg">
                 <p class="text-lg md:text-4xl text-white">{ctaData.title}</p>
