@@ -197,12 +197,12 @@ const ctaData: ctaType = await sanityClient.fetch(`
       <!-- End Hero -->
     </section>
 
-    <section id="benefits">
+    <section id="benefits" class="bg-green-50 py-24">
       <!-- Benefits -->
       <!-- Icon Blocks -->
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
         <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
+          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
         >
           {benefitSectionData?.title || "Nuestros Beneficios"}
         </h2>
@@ -234,8 +234,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
             ) : (
               <div class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900">
                 <div class="flex items-center gap-x-4 mb-3">
-                  <div class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800">
-                  </div>
+                  <div class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800" />
                   <div class="flex-shrink-0">
                     <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">
                       Build your portfolio
@@ -256,41 +255,32 @@ const ctaData: ctaType = await sanityClient.fetch(`
     </section>
 
     <!-- History -->
-    <section id="history">
+    <section id="history" class="py-24">
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-start">
         <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
+          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
         >
-          {
-            aboutUsSectionData && aboutUsSectionData.title
-              ? aboutUsSectionData.title
-              : "Sobre Nosotros"
-          }
+          {aboutUsSectionData?.title || "Sobre Nosotros"}
         </h2>
         <div
           class="grid grid-cols-1 lg:grid-cols-2 flex flex-col md:flex-row md:gap-12 lg:gap-8 items-center pt-8"
         >
           <img
             src={aboutUsSectionData.image?.asset.url || ""}
-            class="rounded-t-lg md:rounded-lg shadow-lg"
+            class="rounded-t-lg md:rounded-lg md:shadow-lg"
             alt=""
           />
           <div
             class="content flex flex-col gap-4 shadow-lg rounded-b-lg md:rounded-none p-8 md:p-0 md:shadow-none"
           >
             <h2 class="font-regular text-2xl md:text-3xl">
-              {
-                aboutUsSectionData && aboutUsSectionData.historyTitle
-                  ? aboutUsSectionData.historyTitle
-                  : "Nuestra Historia"
-              }
+              {aboutUsSectionData?.historyTitle || "Nuestra Historia"}
               <p
                 class="leading-relaxed tracking-wide text-lg text-justify text-gray-600"
               >
                 {
-                  aboutUsSectionData && aboutUsSectionData.historyTitle
-                    ? aboutUsSectionData.history
-                    : "Nuestra Historia Los primeros pasos de Coopuniodonto datan desde 1999 cuando el Dr. Domingo Santana en su estadía en Brasil conoce las cooperativas Uniodonto y Unimed Brasil. Al llegar al país, junto a la Doctora Rossy Suzaña inician los primeros pasos para introducir el movimiento cooperativista a los odontólogos, fundando así Coopuniodonto. "
+                  aboutUsSectionData?.history ||
+                    "Nuestra Historia Los primeros pasos de Coopuniodonto datan desde 1999 cuando el Dr. Domingo Santana en su estadía en Brasil conoce las cooperativas Uniodonto y Unimed Brasil. Al llegar al país, junto a la Doctora Rossy Suzaña inician los primeros pasos para introducir el movimiento cooperativista a los odontólogos, fundando así Coopuniodonto. "
                 }
               </p>
             </h2>
@@ -298,67 +288,67 @@ const ctaData: ctaType = await sanityClient.fetch(`
         </div>
       </div>
       <!-- End History -->
-
-      <section id="stats">
-        <!-- Features -->
-        <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
-          <h2
-            class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
-          >
-            {statisticsSection?.title || "Nuestras Estadísticas"}
-          </h2>
-          <!-- Grid -->
-          <div
-            class="grid gap-6 grid-cols-1 md:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8 pt-8"
-          >
-            <!-- Stats -->
-            {
-              statisticsSection?.statistics.map((statistic) => (
-                <div>
-                  <h4 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
-                    {statistic.title}
-                  </h4>
-                  <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600">
-                    {statistic.statisticValue}
-                  </p>
-                </div>
-              ))
-            }
-            <!-- End Stats -->
-          </div>
-          <!-- End Grid -->
-        </div>
-        <!-- End Features -->
-      </section>
-
-      <!-- CTA -->
-      {
-        ctaData && (
-          <section id="cta">
-            <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pt-14 pb-8">
-              <div class="grid grid-cols-1 md:grid-cols-2 shadow-lg">
-                <div class="content text-center md:text-start flex flex-col justify-between bg-green-600 gap-8 p-8 rounded-lg md:rounded-none lg:rounded-l-lg">
-                  <p class="text-lg md:text-4xl text-white">{ctaData.title}</p>
-                  <a
-                    class="p-4 sm:p-5 text-center md:text-start inline-flex items-center justify-center md:justify-start gap-x-2 text-sm font-semibold rounded-lg border border-white bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                    href="/afiliate/"
-                  >
-                    Afiliate
-                  </a>
-                </div>
-                <img
-                  src={ctaData.image?.asset.url || ""}
-                  class="hidden md:block rounded-r-lg object-cover"
-                  width="1080px"
-                  height="720px"
-                  alt=""
-                />
-              </div>
-            </div>
-          </section>
-        )
-      }
-      <!-- End of CTA -->
     </section>
+
+    <section id="stats" class="py-24 bg-green-50">
+      <!-- Features -->
+      <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
+        <h2
+          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
+        >
+          {statisticsSection?.title || "Nuestras Estadísticas"}
+        </h2>
+        <!-- Grid -->
+        <div
+          class="grid gap-6 grid-cols-1 md:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8 pt-8"
+        >
+          <!-- Stats -->
+          {
+            statisticsSection?.statistics.map((statistic) => (
+              <div>
+                <h4 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
+                  {statistic.title}
+                </h4>
+                <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600">
+                  {statistic.statisticValue}
+                </p>
+              </div>
+            ))
+          }
+          <!-- End Stats -->
+        </div>
+        <!-- End Grid -->
+      </div>
+      <!-- End Features -->
+    </section>
+
+    <!-- CTA -->
+    {
+      ctaData && (
+        <section id="cta" class="py-24">
+          <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 shadow-lg">
+              <div class="content text-center md:text-start flex flex-col justify-between bg-green-600 gap-8 p-8 rounded-lg md:rounded-none lg:rounded-l-lg">
+                <p class="text-lg md:text-4xl text-white">{ctaData.title}</p>
+                <a
+                  class="p-4 sm:p-5 text-center md:text-start inline-flex items-center justify-center md:justify-start gap-x-2 text-sm font-semibold rounded-lg border border-white bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                  href="/afiliate/"
+                >
+                  Afiliate
+                </a>
+              </div>
+              <img
+                src={ctaData.image?.asset.url || ""}
+                class="hidden md:block rounded-r-lg object-cover"
+                width="1080px"
+                height="720px"
+                alt=""
+              />
+            </div>
+          </div>
+        </section>
+      )
+    }
+    <!-- End of CTA -->
   </main>
 </Layout>
