@@ -1,0 +1,320 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Calculadora">
+  <main>
+    <!-- Contact Us -->
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div class="max-w-xl mx-auto">
+        <div class="text-center">
+          <h1
+            class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white"
+          >
+            Calculadora de prestamos
+          </h1>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">
+            Indique los datos para calcular el prestamo.
+          </p>
+        </div>
+      </div>
+      <div class="mt-12">
+        <div class="flex flex-col gap-8">
+          <div
+            class="flex flex-col grow border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-gray-700"
+          >
+            <form>
+              <div class="grid gap-4 lg:gap-6">
+                <!-- Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                  <div>
+                    <label
+                      for="monto"
+                      class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                      >Monto</label
+                    >
+                    <input
+                      type="number"
+                      name="monto"
+                      min="1"
+                      id="monto"
+                      class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      for="cuotas"
+                      class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                      >Cuotas</label
+                    >
+                    <input
+                      type="number"
+                      name="cuotas"
+                      min="1"
+                      id="cuotas"
+                      class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                      required
+                    />
+                  </div>
+                </div>
+                <!-- End Grid -->
+                <div class="grid gap-4 lg:gap-6">
+                  <!-- Grid -->
+                  <div class="grid grid-cols-1 sm:grid-cols-1 gap-4 lg:gap-6">
+                    <div>
+                      <label
+                        for="tipoPrestamo"
+                        class="block mb-2 text-sm text-gray-700 font-medium dark:text-white"
+                        >Tipo de prestamo</label
+                      >
+                      <select
+                        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-green-500 focus:ring-green-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                        name="tipoPrestamo"
+                        id="tipoPrestamo"
+                        required
+                      >
+                        <option value="prestamos-ordinarios"
+                          >Préstamos Ordinarios</option
+                        >
+                        <option value="prestamos-sobre-ahorros"
+                          >Préstamos sobre Ahorros</option
+                        >
+                        <option value="prestamo-de-emergencia"
+                          >Préstamo de Emergencia</option
+                        >
+                        <option value="emergencia-21-96"
+                          >Emergencia 21.96</option
+                        >
+                        <option value="vehiculos-usados"
+                          >Vehículos usados</option
+                        >
+                        <option value="prestamos-escolares"
+                          >Préstamos Escolares</option
+                        >
+                        <option value="prestamo-vehiculos-nuevos"
+                          >Préstamo vehículos Nuevos</option
+                        >
+                        <option value="prestamos-vacaciones"
+                          >Préstamos Vacaciones</option
+                        >
+                        <option value="prestamos-utiles-escolares"
+                          >Préstamos Útiles Escolares</option
+                        >
+                        <option value="ordinario">Ordinario</option>
+                        <option value="prestamo-de-emergencia-cvd19"
+                          >Préstamo de Emergencia cvd19</option
+                        >
+                        <option value="prestamos-equipos-dentales"
+                          >Préstamos Equipos Dentales</option
+                        >
+                        <option value="prestamos-hipotecarios"
+                          >Préstamos Hipotecarios</option
+                        >
+                        <option value="prestamo-de-feria-2021"
+                          >Préstamo De Feria 2021</option
+                        >
+                        <option value="prestamos-ordinario-feria-21"
+                          >Préstamos Ordinario Feria 21</option
+                        >
+                        <option value="prestamo-de-equipo-feria-2021"
+                          >Préstamo de Equipo feria 2021</option
+                        >
+                        <option value="prestamo-de-emergencia-feria-2021"
+                          >Préstamo de Emergencia Feria 2021</option
+                        >
+                        <option value="prestamos-seguros"
+                          >Préstamos Seguros</option
+                        >
+                      </select>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    >Calcular</button
+                  >
+                </div>
+              </div>
+              <!-- End Card -->
+            </form>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
+              <p>Información de la solicitud</p>
+              <div class="flex flex-col">
+                <div class="-m-1.5 overflow-x-auto">
+                  <div class="p-1.5 min-w-full inline-block align-middle">
+                    <div class="border rounded-lg overflow-hidden">
+                      <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                          <tr>
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Fecha</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Tipo de préstamo</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Interés</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Cuotas</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Monto solicitado</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Monto de interés</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Total final</th
+                            >
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                          <tr>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
+                              >22-12-2024</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >Prestamos Ordinarios
+                            </td>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >1
+                            </td>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >18 %
+                            </td>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >4.00
+                            </td>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >0.06
+                            </td>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >4.06
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <p>Desglose</p>
+              <div class="flex flex-col">
+                <div class="-m-1.5 overflow-x-auto">
+                  <div class="p-1.5 min-w-full inline-block align-middle">
+                    <div class="border rounded-lg overflow-hidden">
+                      <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                          <tr>
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Cuota</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Fecha de pago</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                              >Capital</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Interés</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Balance de capital</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Seguro</th
+                            >
+                            <th
+                              scope="col"
+                              class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
+                              >Cuota</th
+                            >
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                          <tr>
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
+                              >1</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >2024-12-22</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >3.00</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >0.05</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >0.00</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >0.00</td
+                            >
+                            <td
+                              class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"
+                              >3.05</td
+                            >
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main></Layout
+>
