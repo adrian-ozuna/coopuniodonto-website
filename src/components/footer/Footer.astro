@@ -55,9 +55,9 @@ const logoData: logoType = await sanityClient.fetch(`
 `);
 ---
 
-<footer class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+<footer class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto bg-slate-50">
   <!-- Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10">
+  <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-10">
     <div class="col-span-full hidden lg:col-span-1 lg:block">
       <a class="flex-none" href="/">
         <img
@@ -214,8 +214,8 @@ const logoData: logoType = await sanityClient.fetch(`
 
   <div class="pt-5 mt-5 border-t border-gray-200 dark:border-gray-700">
     <div class="sm:flex sm:justify-center sm:items-center">
-      <div class="flex justify-between items-center">
-        <div class="mt-3 sm:hidden">
+      <div class="flex flex-col justify-between items-center">
+        <div class="mt-3 sm:hidden flex flex-col items-center">
           <a class="flex-none" href="/">
             <img
               class="w-16 md:w-20 h-auto"
@@ -227,7 +227,7 @@ const logoData: logoType = await sanityClient.fetch(`
             © {currentYear} Coopuniodonto.
           </p>
         </div>
-        <p class="tex-xs text-gray-600">
+        <p class="text-xs text-gray-600">
           Desarrollado por <a
             href="https://ozudev.com"
             class="font-bold"
