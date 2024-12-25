@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity'
 
-export const ctoSectionType = defineType({
-  name: 'ctoSection',
-  title: 'CTO',
+export const ctaSectionType = defineType({
+  name: 'ctaSection',
+  title: 'CTA',
   type: 'document',
   fields: [
     defineField({

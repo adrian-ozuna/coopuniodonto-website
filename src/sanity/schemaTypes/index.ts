@@ -2,7 +2,7 @@ import type { SchemaTypeDefinition } from "sanity";
 import { aboutUsSectionType } from "./aboutUsSectionType";
 import { benefitSectionType } from "./benefitSectionType";
 import { contactInfoType } from "./contactInfoType";
-import { ctoSectionType } from "./ctoSectionType";
+import { ctaSectionType } from "./ctaSectionType";
 import { headerSectionType } from "./headerSectionType";
 import { homeType } from "./homeType";
 import { logoType } from "./logoType";
@@ -15,7 +15,7 @@ export const schemaTypes = [
   benefitSectionType,
   aboutUsSectionType,
   statisticsSectionType,
-  ctoSectionType,
+  ctaSectionType,
   socialsType,
   logoType,
   contactInfoType,

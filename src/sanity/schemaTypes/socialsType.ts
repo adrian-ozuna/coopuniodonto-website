@@ -15,7 +15,6 @@ export const socialsType = defineType({
         fields: [
           { name: 'name', type: 'string', title: 'Nombre' },
           { name: 'link', type: 'url', title: 'Link' },
-          { name: 'icon', type: 'image', title: 'Icono' },
         ]
       }
     ]

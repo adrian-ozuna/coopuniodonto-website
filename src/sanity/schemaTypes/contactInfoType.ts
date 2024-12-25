@@ -12,6 +12,17 @@ export const contactInfoType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'email',
+      title: 'Correo electrónico',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'mapsLink',
+      title: 'Link de Google Maps',
+      type: 'string',
+    }),
+    defineField({
       name: 'address',
       title: 'Direccion',
       type: 'string',

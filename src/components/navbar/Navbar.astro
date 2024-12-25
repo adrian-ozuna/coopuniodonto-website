@@ -1,5 +1,16 @@
 ---
+import { sanityClient } from "sanity:client";
+import type { logoType } from "../footer/Footer.astro";
+
 const rifa = false;
+
+const logoData: logoType = await sanityClient.fetch(`
+   *[_type == "logo"][0] {
+      logo {
+        asset->{url}
+      }
+    }
+`);
 ---
 
 <header
@@ -11,7 +22,7 @@ const rifa = false;
   >
     <div class="flex items-center justify-between">
       <a class="flex-none" href="/">
-        <img class="w-16 md:w-20 h-auto" src="../favicon.svg" alt="Logo" />
+        <img class="w-16 md:w-20 h-auto" src={logoData.logo?.asset.url || ""} alt="Logo" />
       </a>
       <div class="sm:hidden">
         <button

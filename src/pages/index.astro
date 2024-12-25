@@ -1,5 +1,108 @@
 ---
+import { sanityClient } from "sanity:client";
 import Layout from "../layouts/Layout.astro";
+
+type headerSectionDataType = {
+  headline: string;
+  subHeadline: string;
+  headerBgImage: string;
+};
+
+type benefitType = {
+  title: string;
+  description: string;
+  icon?: {
+    _type: "image";
+    asset: {
+      url: string;
+    };
+  };
+};
+
+type benefitSectionDataType = {
+  title: string;
+  benefits: benefitType[];
+};
+
+type aboutUsSectionType = {
+  title: string;
+  historyTitle: string;
+  history: string;
+  image: {
+    _type: "image";
+    asset: {
+      url: string;
+    };
+  };
+};
+
+type statisticsSectionType = {
+  title: string;
+  statistics: {
+    title: string;
+    statisticValue: string;
+  }[];
+};
+
+type ctaType = {
+  title: string;
+  image: {
+    _type: "image";
+    asset: {
+      url: string;
+    };
+  };
+};
+
+const headerSectionData: headerSectionDataType = await sanityClient.fetch(`
+  *[_type == "headerSection"][0] {
+    headline,
+    subHeadline
+  }
+`);
+
+const benefitSectionData: benefitSectionDataType = await sanityClient.fetch(`
+   *[_type == "benefitsSection"][0] {
+      title,
+      benefits[] {
+        title,
+        description,
+        icon {
+          asset->{url}
+        }
+      }
+    }
+`);
+
+const aboutUsSectionData: aboutUsSectionType = await sanityClient.fetch(`
+   *[_type == "aboutUsSection"][0] {
+      title,
+      historyTitle,
+      history,
+      image {
+        asset->{url}
+      }
+    }
+`);
+
+const statisticsSection: statisticsSectionType = await sanityClient.fetch(`
+   *[_type == "statisticsSection"][0] {
+      title,
+      statistics[] {
+        title,
+        statisticValue
+      }
+    }
+`);
+
+const ctaData: ctaType = await sanityClient.fetch(`
+   *[_type == "ctaSection"][0] {
+      title,
+      image {
+        asset->{url}
+      }
+    }
+`);
 ---
 
 <Layout title="Inicio">
@@ -53,9 +156,10 @@ import Layout from "../layouts/Layout.astro";
 
           <div class="mt-5 max-w-3xl text-center mx-auto">
             <p class="text-lg text-white tracking-wide">
-              Únete a nosotros para impulsar tu práctica y alcanzar nuevos
-              niveles de éxito profesional. ¡Bienvenido a una comunidad dedicada
-              a la excelencia dental!
+              {
+                headerSectionData?.subHeadline ||
+                  "Únete a nosotros para impulsar tu práctica y alcanzar nuevos niveles de éxito profesional. ¡Bienvenido a una comunidad dedicada a la excelencia dental!"
+              }
             </p>
           </div>
 
@@ -100,175 +204,70 @@ import Layout from "../layouts/Layout.astro";
         <h2
           class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
         >
-          Nuestros Beneficios
+          {benefitSectionData?.title || "Nuestros Beneficios"}
         </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-4 pt-8">
-          <!-- Card -->
-          <div
-            class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900"
-          >
-            <div class="flex items-center gap-x-4 mb-3">
-              <div
-                class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800"
-              >
-                <svg
-                  class="flex-shrink-0 w-6 h-6 text-green-600 dark:text-green-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><circle cx="13.5" cy="6.5" r=".5"></circle><circle
-                    cx="17.5"
-                    cy="10.5"
-                    r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"
-                  ></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path
-                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-                  ></path></svg
-                >
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-8 auto-rows-fr">
+          {
+            benefitSectionData && benefitSectionData.benefits ? (
+              benefitSectionData.benefits.map((benefit) => (
+                <div class="shadow-lg bg-green-600 rounded-lg p-5 dark:bg-slate-900">
+                  <div class="pb-5">
+                    <div class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-800 bg-green-700 dark:green-blue-900 dark:bg-green-800">
+                      <img
+                        src={benefit.icon?.asset.url || ""}
+                        alt={benefit.title || "Benefit Icon"}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex items-center grow gap-x-4 mb-3">
+                    <div class="flex-shrink-0">
+                      <h3 class="block text-lg font-semibold text-white dark:text-white">
+                        {benefit.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p class="text-white dark:text-gray-400">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900">
+                <div class="flex items-center gap-x-4 mb-3">
+                  <div class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 text-green-600 dark:text-green-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <>
+                        <circle cx="13.5" cy="6.5" r=".5" />
+                        <circle cx="17.5" cy="10.5" r=".5" />
+                        <circle cx="8.5" cy="7.5" r=".5" />
+                        <circle cx="6.5" cy="12.5" r=".5" />
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+                      </>
+                    </svg>
+                  </div>
+                  <div class="flex-shrink-0">
+                    <h3 class="block text-lg font-semibold text-gray-800 dark:text-white">
+                      Build your portfolio
+                    </h3>
+                  </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-400">
+                  The simplest way to keep your portfolio always up-to-date.
+                </p>
               </div>
-              <div class="flex-shrink-0">
-                <h3
-                  class="block text-lg font-semibold text-gray-800 dark:text-white"
-                >
-                  Build your portfolio
-                </h3>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-400">
-              The simplest way to keep your portfolio always up-to-date.
-            </p>
-          </div>
-          <!-- End Card -->
-
-          <!-- Card -->
-          <div
-            class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900"
-          >
-            <div class="flex items-center gap-x-4 mb-3">
-              <div
-                class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800"
-              >
-                <svg
-                  class="flex-shrink-0 w-6 h-6 text-green-600 dark:text-green-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><circle cx="13.5" cy="6.5" r=".5"></circle><circle
-                    cx="17.5"
-                    cy="10.5"
-                    r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"
-                  ></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path
-                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-                  ></path></svg
-                >
-              </div>
-              <div class="flex-shrink-0">
-                <h3
-                  class="block text-lg font-semibold text-gray-800 dark:text-white"
-                >
-                  Build your portfolio
-                </h3>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-400">
-              The simplest way to keep your portfolio always up-to-date.
-            </p>
-          </div>
-          <!-- End Card -->
-
-          <!-- Card -->
-          <div
-            class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900"
-          >
-            <div class="flex items-center gap-x-4 mb-3">
-              <div
-                class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800"
-              >
-                <svg
-                  class="flex-shrink-0 w-6 h-6 text-green-600 dark:text-green-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><circle cx="13.5" cy="6.5" r=".5"></circle><circle
-                    cx="17.5"
-                    cy="10.5"
-                    r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"
-                  ></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path
-                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-                  ></path></svg
-                >
-              </div>
-              <div class="flex-shrink-0">
-                <h3
-                  class="block text-lg font-semibold text-gray-800 dark:text-white"
-                >
-                  Build your portfolio
-                </h3>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-400">
-              The simplest way to keep your portfolio always up-to-date.
-            </p>
-          </div>
-          <!-- End Card -->
-
-          <!-- Card -->
-          <div
-            class="w-full h-full bg-white shadow-lg rounded-lg p-5 dark:bg-slate-900"
-          >
-            <div class="flex items-center gap-x-4 mb-3">
-              <div
-                class="inline-flex justify-center items-center w-[62px] h-[62px] rounded-full border-4 border-green-50 bg-green-100 dark:green-blue-900 dark:bg-green-800"
-              >
-                <svg
-                  class="flex-shrink-0 w-6 h-6 text-green-600 dark:text-green-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  ><circle cx="13.5" cy="6.5" r=".5"></circle><circle
-                    cx="17.5"
-                    cy="10.5"
-                    r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"
-                  ></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path
-                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
-                  ></path></svg
-                >
-              </div>
-              <div class="flex-shrink-0">
-                <h3
-                  class="block text-lg font-semibold text-gray-800 dark:text-white"
-                >
-                  Build your portfolio
-                </h3>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-400">
-              The simplest way to keep your portfolio always up-to-date.
-            </p>
-          </div>
+            )
+          }
           <!-- End Card -->
         </div>
       </div>
@@ -282,124 +281,104 @@ import Layout from "../layouts/Layout.astro";
         <h2
           class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
         >
-          Sobre Nosotros
+          {
+            aboutUsSectionData && aboutUsSectionData.title
+              ? aboutUsSectionData.title
+              : "Sobre Nosotros"
+          }
         </h2>
         <div
           class="grid grid-cols-1 lg:grid-cols-2 flex flex-col md:flex-row md:gap-12 lg:gap-8 items-center pt-8"
         >
           <img
-            src="https://images3.alphacoders.com/116/1167734.jpg"
+            src={aboutUsSectionData.image?.asset.url || ""}
             class="rounded-t-lg md:rounded-lg shadow-lg"
             alt=""
           />
           <div
             class="content flex flex-col gap-4 shadow-lg rounded-b-lg md:rounded-none p-8 md:p-0 md:shadow-none"
           >
-            <h2 class="font-regular text-2xl md:text-3xl">Nuestra Historia</h2>
-            <p
-              class="leading-relaxed tracking-wide text-lg text-justify text-gray-600"
-            >
-              Los primeros pasos de Coopuniodonto datan desde 1999 cuando el Dr.
-              Domingo Santana en su estadía en Brasil conoce las cooperativas
-              Uniodonto y Unimed Brasil. Al llegar al país, junto a la Doctora
-              Rossy Suzaña inician los primeros pasos para introducir el
-              movimiento cooperativista a los odontólogos, fundando así
-              Coopuniodonto.
-            </p>
+            <h2 class="font-regular text-2xl md:text-3xl">
+              {
+                aboutUsSectionData && aboutUsSectionData.historyTitle
+                  ? aboutUsSectionData.historyTitle
+                  : "Nuestra Historia"
+              }
+              <p
+                class="leading-relaxed tracking-wide text-lg text-justify text-gray-600"
+              >
+                {
+                  aboutUsSectionData && aboutUsSectionData.historyTitle
+                    ? aboutUsSectionData.history
+                    : "Nuestra Historia Los primeros pasos de Coopuniodonto datan desde 1999 cuando el Dr. Domingo Santana en su estadía en Brasil conoce las cooperativas Uniodonto y Unimed Brasil. Al llegar al país, junto a la Doctora Rossy Suzaña inician los primeros pasos para introducir el movimiento cooperativista a los odontólogos, fundando así Coopuniodonto. "
+                }
+              </p>
+            </h2>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End History -->
+      <!-- End History -->
 
-    <section id="stats">
-      <!-- Features -->
-      <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
-        <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
-        >
-          Nuestras Estadisticas
-        </h2>
-        <!-- Grid -->
-        <div
-          class="grid gap-6 grid-cols-1 md:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8 pt-8"
-        >
-          <!-- Stats -->
-          <div>
-            <h4
-              class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200"
-            >
-              Socios Activos
-            </h4>
-            <p
-              class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600"
-            >
-              500+
-            </p>
-          </div>
-          <!-- End Stats -->
-
-          <!-- Stats -->
-          <div>
-            <h4
-              class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200"
-            >
-              Prestamos Aprobados
-            </h4>
-            <p
-              class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600"
-            >
-              3,200,000
-            </p>
-          </div>
-          <!-- End Stats -->
-
-          <!-- Stats -->
-          <div>
-            <h4
-              class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200"
-            >
-              Dependencias
-            </h4>
-            <p
-              class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600"
-            >
-              10
-            </p>
-          </div>
-          <!-- End Stats -->
-        </div>
-        <!-- End Grid -->
-      </div>
-      <!-- End Features -->
-    </section>
-
-    <!-- CTA -->
-    <section id="cta">
-      <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pt-14 pb-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 shadow-lg">
-          <div
-            class="content text-center md:text-start flex flex-col justify-between bg-green-600 gap-8 p-8 rounded-lg md:rounded-none lg:rounded-l-lg"
+      <section id="stats">
+        <!-- Features -->
+        <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
+          <h2
+            class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider pt-14"
           >
-            <p class="text-lg md:text-4xl text-white">
-              Adquiere tus equipos dentales con nuestros prestamos a la mejor
-              tasa del mercado. Afiliate con nosotros.
-            </p>
-            <a
-              class="p-4 sm:p-5 text-center md:text-start inline-flex items-center justify-center md:justify-start gap-x-2 text-sm font-semibold rounded-lg border border-white bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              href="/afiliate/"
-            >
-              Afiliate
-            </a>
+            {statisticsSection?.title || "Nuestras Estadísticas"}
+          </h2>
+          <!-- Grid -->
+          <div
+            class="grid gap-6 grid-cols-1 md:grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8 pt-8"
+          >
+            <!-- Stats -->
+            {
+              statisticsSection?.statistics.map((statistic) => (
+                <div>
+                  <h4 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
+                    {statistic.title}
+                  </h4>
+                  <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-green-600">
+                    {statistic.statisticValue}
+                  </p>
+                </div>
+              ))
+            }
+            <!-- End Stats -->
           </div>
-          <img
-            src="https://images3.alphacoders.com/116/1167734.jpg"
-            class="hidden h-full md:block rounded-r-lg"
-            alt=""
-          />
+          <!-- End Grid -->
         </div>
-      </div>
+        <!-- End Features -->
+      </section>
+
+      <!-- CTA -->
+      {
+        ctaData && (
+          <section id="cta">
+            <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto pt-14 pb-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 shadow-lg">
+                <div class="content text-center md:text-start flex flex-col justify-between bg-green-600 gap-8 p-8 rounded-lg md:rounded-none lg:rounded-l-lg">
+                  <p class="text-lg md:text-4xl text-white">{ctaData.title}</p>
+                  <a
+                    class="p-4 sm:p-5 text-center md:text-start inline-flex items-center justify-center md:justify-start gap-x-2 text-sm font-semibold rounded-lg border border-white bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    href="/afiliate/"
+                  >
+                    Afiliate
+                  </a>
+                </div>
+                <img
+                  src={ctaData.image?.asset.url || ""}
+                  class="hidden md:block rounded-r-lg object-cover"
+                  width="1080px"
+                  height="720px"
+                  alt=""
+                />
+              </div>
+            </div>
+          </section>
+        )
+      }
+      <!-- End of CTA -->
     </section>
-    <!-- End of CTA -->
   </main>
 </Layout>
