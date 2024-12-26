@@ -19,7 +19,8 @@ export const headerSectionType = defineType({
     defineField({
       name: 'headerBgImage',
       title: 'Imagen de fondo del encabezado',
-      type: 'url',
+      type: 'image',
+      
     }),
   ],
 })
