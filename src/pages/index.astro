@@ -5,7 +5,12 @@ import Layout from "../layouts/Layout.astro";
 type headerSectionDataType = {
   headline: string;
   subHeadline: string;
-  headerBgImage: string;
+  headerBgImage: {
+    _type: "image";
+    asset: {
+      url: string;
+    };
+  };
 };
 
 type benefitType = {
@@ -57,9 +62,14 @@ type ctaType = {
 const headerSectionData: headerSectionDataType = await sanityClient.fetch(`
   *[_type == "headerSection"][0] {
     headline,
-    subHeadline
+    subHeadline,
+    headerBgImage {
+      asset->{url}
+    }
   }
 `);
+
+console.log(headerSectionData);
 
 const benefitSectionData: benefitSectionDataType = await sanityClient.fetch(`
    *[_type == "benefitsSection"][0] {
@@ -110,8 +120,8 @@ const ctaData: ctaType = await sanityClient.fetch(`
     <!-- Hero -->
     <section id="start">
       <div
-        class="relative overflow-hidden bg-cover bg-no-repeat bg-center bg-[url('https://assets-global.website-files.com/6145886b32367adf3d9eb513/62bca4050bfdf27c4bd521be_staten%20island%20dentist.jpeg')]"
-        style="box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);"
+        class=`relative overflow-hidden bg-cover bg-no-repeat bg-center`
+        style=`box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6); background-image: url(${headerSectionData.headerBgImage?.asset.url || "https://assets-global.website-files.com/6145886b32367adf3d9eb513/62bca4050bfdf27c4bd521be_staten%20island%20dentist.jpeg"})`
       >
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <!-- Announcement Banner -->
