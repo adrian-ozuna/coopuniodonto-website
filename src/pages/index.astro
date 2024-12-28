@@ -154,7 +154,9 @@ const ctaData: ctaType = await sanityClient.fetch(`
             <h1
               class="block font-bold text-white text-4xl md:text-5xl lg:text-6xl tracking-wider"
             >
-             Somos Coopuniodonto
+             {
+              headerSectionData?.headline || "Somos Coopuniodonto"
+             }
             </h1>
           </div>
           <!-- End Title -->
