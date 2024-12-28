@@ -156,7 +156,7 @@ const logoData: logoType = await sanityClient.fetch(`
           </div>
         </div>
         <a
-          class="inline-flex justify-center items-center gap-x-3 text-center bg-green-700 hover:bg-green-800 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 py-3 px-4 dark:focus:ring-offset-gray-800"
+          class="inline-flex justify-center items-center gap-x-3 text-center bg-green-700 hover:bg-green-800 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 py-3 px-4 dark:focus:ring-offset-gray-800 transition ease-in delay-75"
           href="/afiliate/"
         >
           Afiliate
@@ -196,11 +196,11 @@ const logoData: logoType = await sanityClient.fetch(`
 <script>
   const header = document.getElementById("navbar");
   const cushionDiv = document.getElementById("cushion-div");
-  
+
   if (header && cushionDiv) {
     const headerOffsetHeight = header.offsetHeight;
     const headerOffSetTop = header.offsetTop;
-    
+
     const sticky = headerOffsetHeight + headerOffSetTop;
 
     // cushionDiv.style.height = `${header.offsetHeight}px`;
