@@ -14,7 +14,7 @@ const logoData: logoType = await sanityClient.fetch(`
 ---
 
 <header
-  class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800"
+  class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800 fixed"
   id="navbar"
 >
   <nav
@@ -166,9 +166,9 @@ const logoData: logoType = await sanityClient.fetch(`
   </nav>
 </header>
 
-<div id="cushion-div" />
+<div id="cushion-div"></div>
 
-<script>
+<!-- <script>
   const header = document.getElementById("navbar");
   const cushionDiv = document.getElementById("cushion-div");
 
@@ -184,8 +184,33 @@ const logoData: logoType = await sanityClient.fetch(`
       if (window.scrollY >= sticky) {
         cushionDiv.style.height = `${headerOffsetHeight}px`;
         header.classList.add(...classes);
-      } else {
+      } else if (window.scrollY >= sticky + 5) {
+        console.log("2")
         cushionDiv.style.height = "0px";
+        header.classList.remove(...classes);
+      }
+    };
+  }
+</script> -->
+
+<script>
+  const header = document.getElementById("navbar");
+  const cushionDiv = document.getElementById("cushion-div");
+  
+  if (header && cushionDiv) {
+    const headerOffsetHeight = header.offsetHeight;
+    const headerOffSetTop = header.offsetTop;
+    
+    const sticky = headerOffsetHeight + headerOffSetTop;
+
+    cushionDiv.style.height = `${header.offsetHeight}px`;
+
+    window.onscroll = () => {
+      const classes = ["shadow-sm"];
+
+      if (window.scrollY >= sticky) {
+        header.classList.add(...classes);
+      } else {
         header.classList.remove(...classes);
       }
     };
