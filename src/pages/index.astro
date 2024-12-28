@@ -69,8 +69,6 @@ const headerSectionData: headerSectionDataType = await sanityClient.fetch(`
   }
 `);
 
-console.log(headerSectionData);
-
 const benefitSectionData: benefitSectionDataType = await sanityClient.fetch(`
    *[_type == "benefitsSection"][0] {
       title,

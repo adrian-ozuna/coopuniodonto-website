@@ -14,7 +14,8 @@ const logoData: logoType = await sanityClient.fetch(`
 ---
 
 <header
-  class="relative flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800"
+  class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800"
+  id="navbar"
 >
   <nav
     class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
@@ -22,7 +23,11 @@ const logoData: logoType = await sanityClient.fetch(`
   >
     <div class="flex items-center justify-between">
       <a class="flex-none" href="/">
-        <img class="w-16 md:w-20 h-auto" src={logoData.logo?.asset.url || ""} alt="Logo" />
+        <img
+          class="w-16 md:w-20 h-auto"
+          src={logoData.logo?.asset.url || ""}
+          alt="Logo"
+        />
       </a>
       <div class="sm:hidden">
         <button
@@ -160,3 +165,29 @@ const logoData: logoType = await sanityClient.fetch(`
     </div>
   </nav>
 </header>
+
+<div id="cushion-div" />
+
+<script>
+  const header = document.getElementById("navbar");
+  const cushionDiv = document.getElementById("cushion-div");
+
+  if (header && cushionDiv) {
+    window.onscroll = () => setSticky();
+    const headerOffsetTop = header.offsetTop;
+    const headerOffsetHeight = header.offsetHeight;
+    const sticky = headerOffsetHeight + headerOffsetTop;
+
+    const setSticky = (): void => {
+      const classes = ["fixed", "shadow-sm"];
+
+      if (window.scrollY >= sticky) {
+        cushionDiv.style.height = `${headerOffsetHeight}px`;
+        header.classList.add(...classes);
+      } else {
+        cushionDiv.style.height = "0px";
+        header.classList.remove(...classes);
+      }
+    };
+  }
+</script>
