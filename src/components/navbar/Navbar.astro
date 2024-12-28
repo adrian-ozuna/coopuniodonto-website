@@ -166,7 +166,7 @@ const logoData: logoType = await sanityClient.fetch(`
   </nav>
 </header>
 
-<div id="cushion-div"></div>
+<div id="cushion-div" class="bg-green-600 h-[96px] md:[112px]"></div>
 
 <!-- <script>
   const header = document.getElementById("navbar");
@@ -203,7 +203,7 @@ const logoData: logoType = await sanityClient.fetch(`
     
     const sticky = headerOffsetHeight + headerOffSetTop;
 
-    cushionDiv.style.height = `${header.offsetHeight}px`;
+    // cushionDiv.style.height = `${header.offsetHeight}px`;
 
     window.onscroll = () => {
       const classes = ["shadow-sm"];
