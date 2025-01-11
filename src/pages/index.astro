@@ -113,7 +113,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
 `);
 ---
 
-<Layout title="Inicio">
+<Layout title="Início">
   <main>
     <!-- Hero -->
     <section id="start">
@@ -152,11 +152,9 @@ const ctaData: ctaType = await sanityClient.fetch(`
           <!-- Title -->
           <div class="mt-5 max-w-2xl text-center mx-auto">
             <h1
-              class="block font-bold text-white text-4xl md:text-5xl lg:text-6xl tracking-wider"
+              class="block font-bold text-white text-4xl md:text-5xl lg:text-6xl tracking-wider capitalize"
             >
-             {
-              headerSectionData?.headline || "Somos Coopuniodonto"
-             }
+              {headerSectionData?.headline || "Somos Coopuniodonto"}
             </h1>
           </div>
           <!-- End Title -->
@@ -182,7 +180,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
               class="inline-flex justify-center items-center gap-x-3 text-center border border-white text-white hover:bg-white hover:text-black text-sm font-medium rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 py-3 px-4 dark:focus:ring-offset-gray-800 transition ease-in delay-75"
               href="#benefits"
             >
-              Saber mas
+              Saber más
               <svg
                 class="flex-shrink-0 w-4 h-4"
                 width="16"
@@ -209,7 +207,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
       <!-- Icon Blocks -->
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
         <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
+          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider capitalize"
         >
           {benefitSectionData?.title || "Nuestros Beneficios"}
         </h2>
@@ -265,7 +263,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
     <section id="history" class="bg-white py-16 md:py-24">
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-start">
         <h2
-          class="text-center md:text-start font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
+          class="text-center md:text-start font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider capitalize"
         >
           {aboutUsSectionData?.title || "Sobre Nosotros"}
         </h2>
@@ -301,7 +299,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
       <!-- Features -->
       <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto text-center">
         <h2
-          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider"
+          class="text-center font-semibold text-3xl md:text-4xl lg:text-4xl tracking-wider capitalize"
         >
           {statisticsSection?.title || "Nuestras Estadísticas"}
         </h2>
@@ -341,7 +339,7 @@ const ctaData: ctaType = await sanityClient.fetch(`
                   class="p-4 sm:p-5 text-center md:text-start inline-flex items-center justify-center md:justify-start gap-x-2 text-sm font-semibold rounded-lg border border-white bg-transparent text-white hover:bg-white hover:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 transition ease-in delay-75"
                   href="/afiliate/"
                 >
-                  Afiliate
+                  Afíliate
                 </a>
               </div>
               <img

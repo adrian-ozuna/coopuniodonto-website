@@ -24,7 +24,7 @@ export const contactInfoType = defineType({
     }),
     defineField({
       name: 'address',
-      title: 'Direccion',
+      title: 'Dirección',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
