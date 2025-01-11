@@ -166,44 +166,16 @@ const logoData: logoType = await sanityClient.fetch(`
   </nav>
 </header>
 
-<div id="cushion-div" class="bg-green-600 h-[96px] md:[112px]"></div>
-
-<!-- <script>
-  const header = document.getElementById("navbar");
-  const cushionDiv = document.getElementById("cushion-div");
-
-  if (header && cushionDiv) {
-    window.onscroll = () => setSticky();
-    const headerOffsetTop = header.offsetTop;
-    const headerOffsetHeight = header.offsetHeight;
-    const sticky = headerOffsetHeight + headerOffsetTop;
-
-    const setSticky = (): void => {
-      const classes = ["fixed", "shadow-sm"];
-
-      if (window.scrollY >= sticky) {
-        cushionDiv.style.height = `${headerOffsetHeight}px`;
-        header.classList.add(...classes);
-      } else if (window.scrollY >= sticky + 5) {
-        console.log("2")
-        cushionDiv.style.height = "0px";
-        header.classList.remove(...classes);
-      }
-    };
-  }
-</script> -->
+<div id="cushion-div" class="bg-white h-[96px] md:h-[112px]"></div>
 
 <script>
   const header = document.getElementById("navbar");
-  const cushionDiv = document.getElementById("cushion-div");
 
-  if (header && cushionDiv) {
+  if (header) {
     const headerOffsetHeight = header.offsetHeight;
     const headerOffSetTop = header.offsetTop;
 
     const sticky = headerOffsetHeight + headerOffSetTop;
-
-    // cushionDiv.style.height = `${header.offsetHeight}px`;
 
     window.onscroll = () => {
       const classes = ["shadow-sm"];
